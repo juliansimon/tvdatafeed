@@ -88,9 +88,8 @@ class TvDatafeed:
         )
 
     def __close_connection(self):
-        logging.info("close websocket connection")
+        logging.debug("close websocket connection")
         ret = self.ws.close()
-        logging.info(ret)
 
     @staticmethod
     def __filter_raw_message(text):
