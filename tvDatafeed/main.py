@@ -87,10 +87,6 @@ class TvDatafeed:
             "wss://data.tradingview.com/socket.io/websocket", headers=self.__ws_headers, timeout=self.__ws_timeout
         )
 
-    def __close_connection(self):
-        logging.debug("close websocket connection")
-        ret = self.ws.close()
-
     @staticmethod
     def __filter_raw_message(text):
         try:
@@ -291,16 +287,7 @@ class TvDatafeed:
             if "series_completed" in result:
                 break
 
-
-        # Close connection
-        self.__close_connection()
-
         return self.__create_df(raw_data, symbol)
-
-        
-    #def close_connection():
-    #    self.__close_connection()
-
 
     def search_symbol(self, text: str, exchange: str = ''):
         url = self.__search_url.format(text, exchange)
